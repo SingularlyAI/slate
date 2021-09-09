@@ -75,8 +75,9 @@
 }
 
 .site-topbar {
-  background: linear-gradient(45deg, $c-green-3,#00C1BC);
+  background: $aside-warning-bg;
   margin-bottom: 10px;
+  color: white;
 
   &__fixed {
     position: fixed;
@@ -86,6 +87,7 @@
     z-index: 40;
   }
 
+  &__message,
   &__link,
   &__link:hover {
     color: $white;
