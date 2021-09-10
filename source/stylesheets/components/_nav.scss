@@ -1,0 +1,29 @@
+.site-header {
+  height: inherit;
+  padding: $size-md 0;
+
+  &__title {
+    font-weight: $font-weight-normal;
+  }
+
+  nav {
+    margin-left: auto;
+    display: flex;
+    width: 40%;
+    justify-content: space-between;
+
+    a {
+      color: $c-gray-2;
+    }
+
+    .active {
+      color: $c-gray-1;
+      font-weight: $font-weight-bold;
+    }    
+  }
+
+  .burger {
+    margin-left:auto;
+    font-size: 28px;
+  }
+}

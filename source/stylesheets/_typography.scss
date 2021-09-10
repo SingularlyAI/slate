@@ -1,0 +1,20 @@
+
+h1 {
+  @extend %header-font;
+  font-size: 44px;
+  line-height: 48px;
+  font-weight: $font-weight-heavy;
+}
+
+
+h2, h3 {
+  @extend %header-font;
+  font-size: 24px;
+  line-height: 28px;
+}
+
+h4, h5, h6 {
+  @extend %header-font;
+  font-size: 20px;
+  line-height: 24px;
+}

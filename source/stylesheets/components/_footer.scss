@@ -1,0 +1,55 @@
+.base__footer {
+  background-color: $c-gray-1;
+  color: $white;
+}
+
+.footer-wrapper {
+  position: relative;
+
+  .container {
+    margin: 50px auto;
+  }
+
+  a {
+    color: $white;
+    padding: 8px 0;
+    display: inline-block;
+  }
+}
+
+@media (max-width: 768px) {
+  .feedback-banner {
+    h2 {
+      display: none !important;
+    }
+  }
+  
+  .footer-wrapper {
+    display: none;
+  }
+}
+
+/*
+ * STOP COPYING HERE!
+ */
+html, body {
+  height: 100%;
+  background: #f4f4f5;
+}
+
+.box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 400px;
+  background: white;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+}
+
+/*
+ * You're copying too much!
+ * Go back up!
+ *
+ */

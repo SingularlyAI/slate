@@ -1,0 +1,95 @@
+.card-list {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+
+.secondary-card{
+  &.study-card {
+    border: 1px solid $c-gray-6;
+    border-radius: 5px;
+    background: $white;
+    color: $c-gray-2;
+  }
+
+  .study-card__title {
+    color: $c-gray-1;
+  }
+}
+
+.study-card {
+  width: 32%;
+  background: $c-gray-9;
+  border-radius: 5px;
+  display: inline-block;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .study-card__image-wrapper {
+    position:relative;
+  }
+}
+
+
+.study-blurb {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  min-height: 240px;
+  padding: 30px;
+  position: relative;
+}
+
+
+.card__sticky-button {
+  position: absolute;
+  bottom: 30px;
+  font-weight: $font-weight-bold;
+}
+
+@media (max-width: 1000px) {
+    .study-card {
+      width: 48%;
+      margin-top: 15px;
+    }
+}
+
+@media (min-width: 1000px) {
+
+    .study-card {
+      position: relative;
+      & .study-card__image-wrapper {
+        min-height: 230px;
+      }
+
+      & img {
+        position: absolute;
+        bottom: 30px;
+      }
+    }
+
+}
+
+@media (max-width: 575px) {
+  .study-card {
+    border-radius:0;
+  }
+}
+
+@media (max-width: 800px) {
+  .study-card {
+
+    &.secondary-card {
+      margin-left: 15px;
+      margin-right: 15px;
+    }
+
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}

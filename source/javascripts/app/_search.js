@@ -8,36 +8,28 @@
   var highlightOpts = { element: 'span', className: 'search-highlight' };
   var searchDelay = 0;
   var timeoutHandle = 0;
-  var index;
 
-  function populate() {
-    index = lunr(function(){
+  var index = new lunr.Index();
 
-      this.ref('id');
-      this.field('title', { boost: 10 });
-      this.field('body');
-      this.pipeline.add(lunr.trimmer, lunr.stopWordFilter);
-      var lunrConfig = this;
-
-      $('h1, h2').each(function() {
-        var title = $(this);
-        var body = title.nextUntil('h1, h2');
-        lunrConfig.add({
-          id: title.prop('id'),
-          title: title.text(),
-          body: body.text()
-        });
-      });
-
-    });
-    determineSearchDelay();
-  }
+  index.ref('id');
+  index.field('title', { boost: 10 });
+  index.field('body');
+  index.pipeline.add(lunr.trimmer, lunr.stopWordFilter);
 
   $(populate);
   $(bind);
 
+  function populate() {
+    window.refHash = {}
+    window.tokens.forEach(function(token){
+      index.add(token)
+      window.refHash[token.id] =token
+    });
+
+    determineSearchDelay();
+  }
   function determineSearchDelay() {
-    if (index.tokenSet.toArray().length>5000) {
+    if(index.tokenStore.length>5000) {
       searchDelay = 300;
     }
   }
@@ -55,7 +47,7 @@
       }();
       wait(function(){
         search(e);
-      }, searchDelay);
+      }, searchDelay );
     });
   }
 
@@ -73,12 +65,12 @@
       var results = index.search(searchInput.value).filter(function(r) {
         return r.score > 0.0001;
       });
-
       if (results.length) {
         searchResults.empty();
+        var prefix =  window.location.toString().indexOf('/docs') > -1 ? '' : '/docs.html';
         $.each(results, function (index, result) {
           var elem = document.getElementById(result.ref);
-          searchResults.append("<li><a href='#" + result.ref + "'>" + $(elem).text() + "</a></li>");
+          searchResults.append("<li><a href='"+prefix+"#" + result.ref + "'>" + window.refHash[result.ref].title+ "</a></li>");
         });
         highlight.call(searchInput);
       } else {
@@ -99,4 +91,3 @@
     content.unhighlight(highlightOpts);
   }
 })();
-
